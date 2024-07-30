@@ -1,9 +1,7 @@
 #include "main.h"
-
 /**
  * _printf - Custom implementation of printf
  * @format: Format string containing the text and format specifiers
- * 
  * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
@@ -47,7 +45,6 @@ int _printf(const char *format, ...)
 			printed_chars += write(1, ptr, 1);
 		}
 	}
-
 	va_end(args);
 	return (printed_chars);
 }
