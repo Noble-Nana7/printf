@@ -3,6 +3,7 @@
 /**
  * _printf - Custom implementation of printf
  * @format: Format string containing the text and format specifiers
+ * 
  * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
@@ -10,6 +11,8 @@ int _printf(const char *format, ...)
 	va_list args;
 	const char *ptr;
 	int printed_chars;
+	char c;
+	const char *str;
 
 	va_start(args, format);
 	printed_chars = 0;
@@ -20,11 +23,19 @@ int _printf(const char *format, ...)
 		{
 			++ptr;
 			if (*ptr == 'c')
-				printed_chars += print_char((char)va_arg(args, int));
+			{
+				c = (char) va_arg(args, int);
+				printed_chars += print_char(c);
+			}
 			else if (*ptr == 's')
-				printed_chars += print_string(va_arg(args, const char *));
+			{
+				str = va_arg(args, const char *);
+				printed_chars += print_string(str);
+			}
 			else if (*ptr == '%')
+			{
 				printed_chars += write(1, "%", 1);
+			}
 			else
 			{
 				printed_chars += write(1, "%", 1);
@@ -32,7 +43,9 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
+		{
 			printed_chars += write(1, ptr, 1);
+		}
 	}
 
 	va_end(args);
