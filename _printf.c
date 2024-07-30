@@ -1,16 +1,15 @@
 #include "main.h"
+
 /**
- * _printf - My custom implementation of printf
+ * _printf - Custom implementation of printf
  * @format: Format string containing the text and format specifiers
  * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int printed_chars;
 	const char *ptr;
-	const char *str;
-	char c;
+	int printed_chars;
 
 	va_start(args, format);
 	printed_chars = 0;
@@ -21,20 +20,21 @@ int _printf(const char *format, ...)
 		{
 			++ptr;
 			if (*ptr == 'c')
-				c = (char) va_arg(args, int);
-				printed_chars += print_char(c);
+				printed_chars += print_char((char)va_arg(args, int));
 			else if (*ptr == 's')
-				str = va_arg(args, const char *);
-				printed_chars += print_string(str);
+				printed_chars += print_string(va_arg(args, const char *));
 			else if (*ptr == '%')
 				printed_chars += write(1, "%", 1);
 			else
+			{
 				printed_chars += write(1, "%", 1);
 				printed_chars += write(1, ptr, 1);
+			}
 		}
 		else
 			printed_chars += write(1, ptr, 1);
 	}
+
 	va_end(args);
 	return (printed_chars);
 }
