@@ -34,3 +34,40 @@ int print_string(const char *str)
 	}
 	return (len);
 }
+
+/**
+ * print_integer - Writes a integer to stdout
+ * @um: The integer to print
+ *
+ * Return: Number of charcters printed
+ */
+
+int print_integ(int num)
+{
+	 int count = 0;
+	 char buffer[12];
+	 char *ptr = buffer + 11;
+	 unsigned int n;
+
+	 *ptr = '\0';
+	 n = (num < 0) ? -num : num;
+
+	 do
+	 {
+		 *--ptr = '0' + (n % 10);
+		 n /= 10;
+		 count++;
+	 }
+	 while (n != 0);
+
+	 if (num < 0)
+	 {
+		 *--ptr = '-';
+		 count++;
+	 }
+	 while (*ptr)
+	 {
+		 _putchar(*ptr++);
+	 }
+	 return (count);
+}

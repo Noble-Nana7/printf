@@ -12,6 +12,10 @@ int _printf(const char *format, ...)
 	char c;
 	const char *str;
 
+	/* changes gor the %d and %i identifiers
+	 * enters */
+	int num;
+
 	va_start(args, format);
 	printed_chars = 0;
 
@@ -29,6 +33,11 @@ int _printf(const char *format, ...)
 			{
 				str = va_arg(args, const char *);
 				printed_chars += print_string(str);
+			}
+			else if (*ptr == 'd' || *ptr == '1')
+			{
+				num = va_arg(args, int);
+				printed_chars += print_integ(num);
 			}
 			else if (*ptr == '%')
 			{
