@@ -1,59 +1,78 @@
 #include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
+
 /**
- * _printf - Custom implementation of printf
- * @format: Format string containing the text and format specifiers
- * Return: Number of characters printed (excluding null byte)
+ * print_char - Prints a character
+ * @c: The character to print
+ *
+ * Return: The number of characters printed
+ */
+static int print_char(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
+ * print_string - Prints a string
+ * @str: The string to print
+ *
+ * Return: The number of characters printed
+ */
+static int print_string(const char *str)
+{
+	int len = 0;
+
+	while (str[len] != '\0')
+		len++;
+	return (write(1, str, len));
+}
+
+/**
+ * _printf - Custom printf function that supports %c, %s, and %%
+ * @format: The format string
+ * @...: The values to format
+ *
+ * Return: The number of characters printed
  */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	const char *ptr;
-	int printed_chars;
-	char c;
-	const char *str;
-
-	/* changes gor the %d and %i identifiers
-	 * enters */
-	int num;
+	int total = 0;
+	const char *p;
 
 	va_start(args, format);
-	printed_chars = 0;
 
-	for (ptr = format; *ptr != '\0'; ++ptr)
+	for (p = format; *p != '\0'; p++)
 	{
-		if (*ptr == '%')
+		if (*p == '%' && (*(p + 1) != '\0'))
 		{
-			++ptr;
-			if (*ptr == 'c')
+			p++;
+			switch (*p)
 			{
-				c = (char) va_arg(args, int);
-				printed_chars += print_char(c);
-			}
-			else if (*ptr == 's')
-			{
-				str = va_arg(args, const char *);
-				printed_chars += print_string(str);
-			}
-			else if (*ptr == 'd' || *ptr == '1')
-			{
-				num = va_arg(args, int);
-				printed_chars += print_integ(num);
-			}
-			else if (*ptr == '%')
-			{
-				printed_chars += write(1, "%", 1);
-			}
-			else
-			{
-				printed_chars += write(1, "%", 1);
-				printed_chars += write(1, ptr, 1);
+				case 'c':
+					total += print_char(va_arg(args, int));
+					break;
+				case 's':
+					total += print_string(va_arg(args, char *));
+					break;
+				case '%':
+					total += print_char('%');
+					break;
+				default:
+					total += print_char('%');
+					total += print_char(*p);
+					break;
 			}
 		}
 		else
 		{
-			printed_chars += write(1, ptr, 1);
+			total += print_char(*p);
 		}
 	}
+
 	va_end(args);
-	return (printed_chars);
+
+	return (total);
 }
