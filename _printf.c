@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 				str = va_arg(args, const char *);
 				printed_chars += print_string(str);
 			}
-			else if (*ptr == 'd' || *ptr == '1')
+			else if (*ptr == 'd' || *ptr == 'i')
 			{
 				num = va_arg(args, int);
 				printed_chars += print_integ(num);
