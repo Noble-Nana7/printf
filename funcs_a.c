@@ -80,7 +80,7 @@ int print_integ(int num)
  * Return: The number of characters to print
  */
 
-int print_binr(unsigned int num)
+int print_binr(unsigned int bnum)
 {
 	int count = 0;
 	char buffer[33];
