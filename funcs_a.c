@@ -71,3 +71,33 @@ int print_integ(int num)
 	 }
 	 return (count);
 }
+
+/**
+ * print_binr - Converts an unsigned int to binary
+ * and writes it to stdout
+ * @num: The unsigned int to convert and print
+ *
+ * Return: The number of characters to print
+ */
+
+int print_binr(unsigned int num)
+{
+	int count = 0;
+	char buffer[33];
+	char *ptr = buffer + 32;
+
+	*ptr = '\0';
+
+	do
+	{
+		*--ptr = (num % 2) + '0';
+		num /= 2;
+		count++;
+	}while (num != 0);
+
+	while (*ptr)
+	{
+		_putchar(*ptr++);
+	}
+	return (count);
+}

@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
 	/* changes gor the %d and %i identifiers
 	 * enters */
 	int num;
+	int bnum;
 
 	va_start(args, format);
 	printed_chars = 0;
@@ -38,6 +39,11 @@ int _printf(const char *format, ...)
 			{
 				num = va_arg(args, int);
 				printed_chars += print_integ(num);
+			}
+			else if (*ptr == 'b')
+			{
+				bnum = va_arg(args, unsigned int);
+				printed chars += print_intergers(bnum);
 			}
 			else if (*ptr == '%')
 			{
