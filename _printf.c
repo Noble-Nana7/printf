@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	/* changes gor the %d and %i identifiers
 	 * enters */
 	int num;
-	int bnum;
+	unsigned int bnum;
 
 	va_start(args, format);
 	printed_chars = 0;
