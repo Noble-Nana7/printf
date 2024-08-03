@@ -15,5 +15,5 @@ int print_char(char c);
 int print_string(const char *str);
 int _putchar(char c);
 int print_integ(int num);
-int print_binr(unsigned int num);
+int print_binr(unsigned int bnum);
 #endif
