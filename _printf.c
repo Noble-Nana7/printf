@@ -50,6 +50,11 @@ int _printf(const char *format, ...)
 				bnum = va_arg(args, unsigned int);
 				printed_chars += print_unsigned(bnum);
 			}
+			else if (*ptr == 'o')
+			{
+				bnum = va_arg(args, unsigned int);
+				printed_chars += print_oct(bnum);
+			}
 			else if (*ptr == '%')
 			{
 				printed_chars += write(1, "%", 1);
