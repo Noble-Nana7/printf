@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 			else if (*ptr == 'b')
 			{
 				bnum = va_arg(args, unsigned int);
-				printed chars += print_intergers(bnum);
+				printed chars += print_binr(bnum);
 			}
 			else if (*ptr == '%')
 			{
