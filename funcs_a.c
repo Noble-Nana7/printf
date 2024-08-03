@@ -101,3 +101,32 @@ int print_binr(unsigned int num)
 	}
 	return (count);
 }
+
+/**
+ * print_unsigned - Writed a unsigned integer to stdout
+ * @num: The unsigned int to print
+ *
+ * Return: umber of chars printed
+ */
+
+int print_unsigned(unsigned int num)
+{
+	int count = 0;
+	char buffer[11];
+	char *ptr = buffer + 10;
+
+	*ptr = '\0';
+
+	do
+	{
+		*--ptr = (num % 10) + '0';
+		num /= 10;
+		count++;
+	}while (num != 0);
+
+	while (*ptr)
+	{
+		_putchar(*ptr++);
+	}
+	return (count);
+}

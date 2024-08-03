@@ -45,6 +45,10 @@ int _printf(const char *format, ...)
 				bnum = va_arg(args, unsigned int);
 				printed_chars += print_binr(bnum);
 			}
+			else if (*ptr == 'i')
+			{
+				bnum = va_arg(args, unsigned int);
+				printed_chars += print_unsigned(bnum);
 			else if (*ptr == '%')
 			{
 				printed_chars += write(1, "%", 1);
