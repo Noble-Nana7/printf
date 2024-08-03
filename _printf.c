@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 				bnum = va_arg(args, unsigned int);
 				printed_chars += print_binr(bnum);
 			}
-			else if (*ptr == 'i')
+			else if (*ptr == 'u')
 			{
 				bnum = va_arg(args, unsigned int);
 				printed_chars += print_unsigned(bnum);
