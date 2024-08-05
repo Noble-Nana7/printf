@@ -74,7 +74,7 @@ int print_lowhex(unsigned int num)
 	int count = 0;
 	char buffer[9];
 	char *ptr = buffer + 8;
-	char hex_dig[] "0123456789abcdef";
+	char hex_dig[] = "0123456789abcdef";
 
 	*ptr = '\0';
 

@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*ptr == 'X')
 			{
-				bnnum = va_arg(args, unsigned int);
+				bnum = va_arg(args, unsigned int);
 				printed_chars += print_caphex(bnum);
 			}
 			else if (*ptr == 'x')
