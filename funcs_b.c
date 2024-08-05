@@ -18,7 +18,7 @@ int print_oct(unsigned int num)
 
 	do
 	{
-		*--ptr = (num % 8) + '\0';
+		*--ptr = (num % 8) + '0';
 		num /= 8;
 		count++;
 	}while (num != 0);
