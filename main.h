@@ -18,4 +18,6 @@ int print_integ(int num);
 int print_binr(unsigned int num);
 int print_unsigned(unsigned int num);
 int print_oct(unsigned int num);
+int print_lowhex(unsigned int num);
+int print_caphex(unsigned int num);
 #endif

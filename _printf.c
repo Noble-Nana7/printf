@@ -55,6 +55,16 @@ int _printf(const char *format, ...)
 				bnum = va_arg(args, unsigned int);
 				printed_chars += print_oct(bnum);
 			}
+			else if (*ptr == 'X')
+			{
+				bnnum = va_arg(args, unsigned int);
+				printed_chars += print_caphex(bnum);
+			}
+			else if (*ptr == 'x')
+			{
+				bnum = va_arg(args, unsigned int);
+				printed_chars += print_lowhex(bnum);
+			}
 			else if (*ptr == '%')
 			{
 				printed_chars += write(1, "%", 1);
